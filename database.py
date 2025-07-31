@@ -36,9 +36,9 @@ class Database:
             
         try:
             with connection.cursor() as cursor:
-                # Create contacts table
+                # Create contact table
                 cursor.execute("""
-                    CREATE TABLE IF NOT EXISTS contacts (
+                    CREATE TABLE IF NOT EXISTS contact(
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         name VARCHAR(255) NOT NULL,
                         email VARCHAR(255) NOT NULL,

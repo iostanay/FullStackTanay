@@ -121,9 +121,9 @@ DELETE /api/contacts/1
 
 ## Database Schema
 
-### Contacts Table
+### Contact Table
 ```sql
-CREATE TABLE contacts (
+CREATE TABLE contact (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
