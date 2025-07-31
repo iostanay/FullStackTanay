@@ -100,24 +100,15 @@
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="subject" class="form-label">Subject</label>
-                                        <select class="form-select" id="subject" name="subject" required>
-                                            <option value="">Select a subject</option>
-                                            <option value="project-inquiry">Project Inquiry</option>
-                                            <option value="consultation">Consultation</option>
-                                            <option value="partnership">Partnership</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mb-3">
                                         <label for="message" class="form-label">Message</label>
                                         <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary w-100">
+                                    <button type="submit" class="btn btn-primary w-100" id="submitBtn">
                                         <i class="fas fa-paper-plane me-2"></i>Send Message
                                     </button>
+                                    
+                                    <div id="formMessage" class="mt-3" style="display: none;"></div>
                                 </form>
                             </div>
                         </div>
@@ -234,4 +225,74 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+    
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+        
+        // Validate form
+        if (!name || !email || !message) {
+            showMessage('Please fill in all fields', 'error');
+            return;
+        }
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+        
+        try {
+            // Send to API
+            const response = await fetch('/api/contacts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                showMessage('Message sent successfully! I\'ll get back to you soon.', 'success');
+                contactForm.reset();
+            } else {
+                showMessage(result.error || 'Failed to send message. Please try again.', 'error');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showMessage('Network error. Please try again.', 'error');
+        } finally {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
+        }
+    });
+    
+    function showMessage(message, type) {
+        formMessage.textContent = message;
+        formMessage.className = `alert alert-${type === 'success' ? 'success' : 'danger'} mt-3`;
+        formMessage.style.display = 'block';
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+    }
+});
+</script>
 {% endblock %} 

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import os
 from datetime import datetime
+from database import db
 
 app = Flask(__name__)
 
@@ -148,6 +149,88 @@ def contact():
 def api_developer():
     return jsonify(developer_data)
 
+# Contact Form API Endpoints
+@app.route('/api/contacts', methods=['POST'])
+def create_contact():
+    """Create a new contact message"""
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        name = data.get('name', '').strip()
+        email = data.get('email', '').strip()
+        message = data.get('message', '').strip()
+        
+        # Validation
+        if not name:
+            return jsonify({'error': 'Name is required'}), 400
+        if not email:
+            return jsonify({'error': 'Email is required'}), 400
+        if not message:
+            return jsonify({'error': 'Message is required'}), 400
+        
+        # Add to database
+        success = db.add_contact(name, email, message)
+        
+        if success:
+            return jsonify({
+                'message': 'Contact message sent successfully',
+                'status': 'success'
+            }), 201
+        else:
+            return jsonify({'error': 'Failed to save message'}), 500
+            
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/contacts', methods=['GET'])
+def get_contacts():
+    """Get all contact messages (admin endpoint)"""
+    try:
+        limit = request.args.get('limit', 50, type=int)
+        contacts = db.get_contacts(limit)
+        
+        return jsonify({
+            'contacts': contacts,
+            'count': len(contacts)
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/contacts/<int:contact_id>', methods=['GET'])
+def get_contact(contact_id):
+    """Get a specific contact message by ID"""
+    try:
+        contact = db.get_contact_by_id(contact_id)
+        
+        if contact:
+            return jsonify(contact), 200
+        else:
+            return jsonify({'error': 'Contact not found'}), 404
+            
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/contacts/<int:contact_id>', methods=['DELETE'])
+def delete_contact(contact_id):
+    """Delete a contact message by ID"""
+    try:
+        success = db.delete_contact(contact_id)
+        
+        if success:
+            return jsonify({'message': 'Contact deleted successfully'}), 200
+        else:
+            return jsonify({'error': 'Contact not found'}), 404
+            
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
+    # Initialize database
+    db.init_database()
+    
     port = int(os.environ.get('PORT', 8000))
     app.run(debug=False, host='0.0.0.0', port=port) 
