@@ -252,6 +252,8 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
         
         try {
+            console.log('Sending contact form data:', { name, email, message });
+            
             // Send to API
             const response = await fetch('/api/contacts', {
                 method: 'POST',
@@ -265,7 +267,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             });
             
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+            
             const result = await response.json();
+            console.log('Response data:', result);
             
             if (response.ok) {
                 showMessage('Message sent successfully! I\'ll get back to you soon.', 'success');
@@ -274,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showMessage(result.error || 'Failed to send message. Please try again.', 'error');
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Fetch error:', error);
             showMessage('Network error. Please try again.', 'error');
         } finally {
             // Reset button state

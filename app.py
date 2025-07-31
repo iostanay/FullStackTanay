@@ -12,6 +12,11 @@ def add_security_headers(response):
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+    # Add CORS headers for API endpoints
+    if request.path.startswith('/api/'):
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     return response
 
 # Sample data for the iOS developer with 10 years experience
@@ -177,37 +182,67 @@ def test_database():
             'database': db.database
         }), 500
 
+@app.route('/api/test')
+def test_api():
+    """Simple test endpoint"""
+    return jsonify({
+        'status': 'success',
+        'message': 'API is working',
+        'timestamp': datetime.now().isoformat()
+    }), 200
+
 # Contact Form API Endpoints
-@app.route('/api/contacts', methods=['POST'])
+@app.route('/api/contacts', methods=['POST', 'OPTIONS'])
 def create_contact():
     """Create a new contact message"""
+    
+    # Handle OPTIONS request for CORS preflight
+    if request.method == 'OPTIONS':
+        return '', 200
+    
     try:
+        print("=== Contact API Called ===")
+        print(f"Request method: {request.method}")
+        print(f"Request headers: {dict(request.headers)}")
+        
         data = request.get_json()
+        print(f"Request data: {data}")
         
         if not data:
+            print("No data provided")
             return jsonify({'error': 'No data provided'}), 400
         
         name = data.get('name', '').strip()
         email = data.get('email', '').strip()
         message = data.get('message', '').strip()
         
+        print(f"Processed data - Name: {name}, Email: {email}, Message: {message}")
+        
         # Validation
         if not name:
+            print("Name validation failed")
             return jsonify({'error': 'Name is required'}), 400
         if not email:
+            print("Email validation failed")
             return jsonify({'error': 'Email is required'}), 400
         if not message:
+            print("Message validation failed")
             return jsonify({'error': 'Message is required'}), 400
         
         # Add to database (with fallback for local development)
         try:
+            print("Attempting to save to database...")
             success = db.add_contact(name, email, message)
+            print(f"Database save result: {success}")
+            
             if success:
+                print("Contact saved successfully")
                 return jsonify({
                     'message': 'Contact message sent successfully',
                     'status': 'success'
                 }), 201
             else:
+                print("Database save failed")
                 return jsonify({'error': 'Failed to save message'}), 500
         except Exception as db_error:
             # For local development, return success even if database fails
