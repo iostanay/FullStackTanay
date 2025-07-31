@@ -96,7 +96,7 @@
                                     <div class="screenshot-item">
                                         <img src="{{ screenshot }}" alt="{{ project.name }} Screenshot" 
                                              class="img-fluid rounded-3" style="width: 100%; height: 120px; object-fit: cover;"
-                                             data-bs-toggle="modal" data-bs-target="#screenshotModal{{ loop.index }}{{ loop.parent.loop.index }}">
+                                             data-bs-toggle="modal" data-bs-target="#screenshotModal{{ loop.index }}{{ loop.parent.loop.index0 }}">
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -313,7 +313,7 @@
 {% for project in developer.projects %}
     {% if project.screenshots %}
         {% for screenshot in project.screenshots %}
-        <div class="modal fade" id="screenshotModal{{ loop.index }}{{ loop.parent.loop.index }}" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="screenshotModal{{ loop.index }}{{ loop.parent.loop.index0 }}" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
