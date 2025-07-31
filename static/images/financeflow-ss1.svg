@@ -1,0 +1,54 @@
+<svg width="300" height="600" viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ECDC4;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#44A08D;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Status Bar -->
+  <rect x="0" y="0" width="300" height="40" fill="#4ECDC4"/>
+  <text x="150" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="12">FinanceFlow</text>
+  
+  <!-- Balance Card -->
+  <rect x="20" y="60" width="260" height="120" fill="white" rx="15"/>
+  <text x="150" y="85" text-anchor="middle" fill="#4ECDC4" font-family="Arial" font-size="16" font-weight="bold">Total Balance</text>
+  <text x="150" y="110" text-anchor="middle" fill="#333" font-family="Arial" font-size="32" font-weight="bold">$12,450</text>
+  <text x="150" y="130" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">+$1,250 this month</text>
+  <text x="150" y="145" text-anchor="middle" fill="#4ECDC4" font-family="Arial" font-size="12">+12.5%</text>
+  
+  <!-- Quick Actions -->
+  <rect x="20" y="200" width="125" height="80" fill="white" rx="15"/>
+  <text x="82" y="225" text-anchor="middle" fill="#4ECDC4" font-family="Arial" font-size="14" font-weight="bold">Send Money</text>
+  <text x="82" y="245" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Quick Transfer</text>
+  
+  <rect x="155" y="200" width="125" height="80" fill="white" rx="15"/>
+  <text x="217" y="225" text-anchor="middle" fill="#4ECDC4" font-family="Arial" font-size="14" font-weight="bold">Request</text>
+  <text x="217" y="245" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Ask for Money</text>
+  
+  <!-- Recent Transactions -->
+  <rect x="20" y="300" width="260" height="200" fill="white" rx="15"/>
+  <text x="150" y="325" text-anchor="middle" fill="#4ECDC4" font-family="Arial" font-size="16" font-weight="bold">Recent Transactions</text>
+  
+  <rect x="30" y="340" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="355" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Starbucks</text>
+  <text x="50" y="370" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Today, 9:30 AM</text>
+  <text x="250" y="360" text-anchor="end" fill="#FF6B6B" font-family="Arial" font-size="14" font-weight="bold">-$4.50</text>
+  
+  <rect x="30" y="390" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="405" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Salary Deposit</text>
+  <text x="50" y="420" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Yesterday, 2:00 PM</text>
+  <text x="250" y="410" text-anchor="end" fill="#4ECDC4" font-family="Arial" font-size="14" font-weight="bold">+$3,200</text>
+  
+  <rect x="30" y="440" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="455" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Netflix</text>
+  <text x="50" y="470" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Mar 15, 8:00 PM</text>
+  <text x="250" y="460" text-anchor="end" fill="#FF6B6B" font-family="Arial" font-size="14" font-weight="bold">-$15.99</text>
+  
+  <!-- Bottom Navigation -->
+  <rect x="0" y="560" width="300" height="40" fill="white"/>
+  <circle cx="75" cy="580" r="15" fill="#4ECDC4"/>
+  <circle cx="150" cy="580" r="15" fill="#ddd"/>
+  <circle cx="225" cy="580" r="15" fill="#ddd"/>
+</svg> 

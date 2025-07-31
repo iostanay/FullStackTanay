@@ -19,10 +19,10 @@ developer_data = {
     "title": "Senior iOS Developer",
     "experience": "10+ Years",
     "location": "San Francisco, CA",
-    "email": "alex.chen@email.com",
+    "email": "tanay.bhattacharjee@email.com",
     "phone": "+1 (415) 555-0123",
-    "github": "github.com/alexchen-ios",
-    "linkedin": "linkedin.com/in/alexchen-ios",
+    "github": "github.com/tanaybhattacharjee",
+    "linkedin": "linkedin.com/in/tanaybhattacharjee",
     "about": "Passionate iOS developer with over 10 years of experience building high-quality mobile applications. Specialized in Swift, SwiftUI, and iOS architecture patterns. Led development teams and delivered apps used by millions of users.",
     "skills": {
         "languages": ["Swift", "Objective-C", "Python", "JavaScript","dfff"],
@@ -62,7 +62,16 @@ developer_data = {
             "features": ["Real-time health monitoring", "Custom dashboards", "Apple Watch companion"],
             "app_store_rating": "4.8/5",
             "downloads": "500K+",
-            "app_store_link": "https://apps.apple.com/app/healthtracker-pro/id1234567890"
+            "app_store_link": "https://apps.apple.com/app/healthtracker-pro/id1234567890",
+            "app_icon": "/static/images/healthtracker-icon.svg",
+            "screenshots": [
+                "/static/images/healthtracker-ss1.svg",
+                "/static/images/healthtracker-ss2.svg",
+                "/static/images/healthtracker-ss3.svg"
+            ],
+            "app_category": "Health & Fitness",
+            "release_date": "2023",
+            "app_size": "45.2 MB"
         },
         {
             "name": "FinanceFlow",
@@ -71,7 +80,16 @@ developer_data = {
             "features": ["Expense tracking", "Budget planning", "Investment insights"],
             "app_store_rating": "4.6/5",
             "downloads": "200K+",
-            "app_store_link": "https://apps.apple.com/app/financeflow/id0987654321"
+            "app_store_link": "https://apps.apple.com/app/financeflow/id0987654321",
+            "app_icon": "/static/images/financeflow-icon.svg",
+            "screenshots": [
+                "/static/images/financeflow-ss1.svg",
+                "/static/images/financeflow-ss2.svg",
+                "/static/images/financeflow-ss3.svg"
+            ],
+            "app_category": "Finance",
+            "release_date": "2022",
+            "app_size": "32.8 MB"
         },
         {
             "name": "TaskMaster",
@@ -80,7 +98,16 @@ developer_data = {
             "features": ["Task management", "Team collaboration", "Real-time sync"],
             "app_store_rating": "4.7/5",
             "downloads": "150K+",
-            "app_store_link": "https://apps.apple.com/app/taskmaster/id1122334455"
+            "app_store_link": "https://apps.apple.com/app/taskmaster/id1122334455",
+            "app_icon": "/static/images/taskmaster-icon.svg",
+            "screenshots": [
+                "/static/images/taskmaster-ss1.svg",
+                "/static/images/taskmaster-ss2.svg",
+                "/static/images/taskmaster-ss3.svg"
+            ],
+            "app_category": "Productivity",
+            "release_date": "2023",
+            "app_size": "28.5 MB"
         }
     ],
     "education": [

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Projects - Alex Chen{% endblock %}
+{% block title %}Projects - Tanay Bhattacharjee{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -22,14 +22,22 @@
             {% for project in developer.projects %}
             <div class="col-lg-6 mb-5">
                 <div class="project-card">
+                    <!-- App Header with Icon -->
                     <div class="d-flex align-items-center mb-4">
-                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
-                             style="width: 60px; height: 60px;">
-                            <i class="fas fa-mobile-alt text-white"></i>
+                        {% if project.app_icon %}
+                        <div class="app-icon me-3" style="width: 80px; height: 80px;">
+                            <img src="{{ project.app_icon }}" alt="{{ project.name }} Icon" class="img-fluid rounded-3" 
+                                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
                         </div>
-                        <div>
+                        {% else %}
+                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                             style="width: 80px; height: 80px;">
+                            <i class="fas fa-mobile-alt text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        {% endif %}
+                        <div class="flex-grow-1">
                             <h4 class="mb-1">{{ project.name }}</h4>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center mb-2">
                                 <div class="text-warning me-2">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -40,6 +48,17 @@
                                 <span class="text-muted">{{ project.app_store_rating }}</span>
                                 <span class="text-muted ms-2">|</span>
                                 <span class="text-muted ms-2">{{ project.downloads }} downloads</span>
+                            </div>
+                            <div class="d-flex align-items-center text-muted small">
+                                {% if project.app_category %}
+                                <span class="badge bg-secondary me-2">{{ project.app_category }}</span>
+                                {% endif %}
+                                {% if project.release_date %}
+                                <span class="me-2">📅 {{ project.release_date }}</span>
+                                {% endif %}
+                                {% if project.app_size %}
+                                <span>📱 {{ project.app_size }}</span>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -66,13 +85,33 @@
                         </ul>
                     </div>
                     
+                    <!-- App Screenshots -->
+                    {% if project.screenshots %}
+                    <div class="mb-4">
+                        <h6 class="mb-3"><i class="fas fa-images text-primary me-2"></i>App Screenshots</h6>
+                        <div class="screenshots-container">
+                            <div class="row">
+                                {% for screenshot in project.screenshots %}
+                                <div class="col-4 mb-2">
+                                    <div class="screenshot-item">
+                                        <img src="{{ screenshot }}" alt="{{ project.name }} Screenshot" 
+                                             class="img-fluid rounded-3" style="width: 100%; height: 120px; object-fit: cover;"
+                                             data-bs-toggle="modal" data-bs-target="#screenshotModal{{ loop.index }}{{ loop.parent.loop.index }}">
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
                     <div class="d-flex gap-2">
                         {% if project.app_store_link %}
-                        <a href="{{ project.app_store_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <a href="{{ project.app_store_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-app-store">
                             <i class="fab fa-apple me-2"></i>View on App Store
                         </a>
                         {% else %}
-                        <a href="#" class="btn btn-primary disabled">
+                        <a href="#" class="btn btn-app-store disabled">
                             <i class="fab fa-apple me-2"></i>Coming Soon
                         </a>
                         {% endif %}
@@ -269,4 +308,25 @@
         </div>
     </div>
 </section>
+
+<!-- Screenshot Modals -->
+{% for project in developer.projects %}
+    {% if project.screenshots %}
+        {% for screenshot in project.screenshots %}
+        <div class="modal fade" id="screenshotModal{{ loop.index }}{{ loop.parent.loop.index }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ project.name }} - Screenshot</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="{{ screenshot }}" alt="{{ project.name }} Screenshot" class="img-fluid rounded-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endfor %}
 {% endblock %} 

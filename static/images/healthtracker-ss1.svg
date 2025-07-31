@@ -1,0 +1,45 @@
+<svg width="300" height="600" viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#FF8E8E;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Status Bar -->
+  <rect x="0" y="0" width="300" height="40" fill="#FF6B6B"/>
+  <text x="150" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="12">HealthTracker Pro</text>
+  
+  <!-- Header -->
+  <rect x="20" y="60" width="260" height="80" fill="white" rx="15"/>
+  <text x="150" y="85" text-anchor="middle" fill="#FF6B6B" font-family="Arial" font-size="16" font-weight="bold">Today's Activity</text>
+  <text x="150" y="105" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Steps: 8,432</text>
+  <text x="150" y="120" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Calories: 2,156</text>
+  
+  <!-- Chart -->
+  <rect x="20" y="160" width="260" height="120" fill="white" rx="15"/>
+  <rect x="40" y="200" width="20" height="60" fill="#FF6B6B"/>
+  <rect x="70" y="180" width="20" height="80" fill="#FF6B6B"/>
+  <rect x="100" y="190" width="20" height="70" fill="#FF6B6B"/>
+  <rect x="130" y="170" width="20" height="90" fill="#FF6B6B"/>
+  <rect x="160" y="200" width="20" height="60" fill="#FF6B6B"/>
+  <rect x="190" y="185" width="20" height="75" fill="#FF6B6B"/>
+  <rect x="220" y="195" width="20" height="65" fill="#FF6B6B"/>
+  <text x="150" y="300" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Weekly Progress</text>
+  
+  <!-- Metrics -->
+  <rect x="20" y="300" width="125" height="80" fill="white" rx="15"/>
+  <text x="82" y="325" text-anchor="middle" fill="#FF6B6B" font-family="Arial" font-size="14" font-weight="bold">Heart Rate</text>
+  <text x="82" y="345" text-anchor="middle" fill="#666" font-family="Arial" font-size="20" font-weight="bold">72 BPM</text>
+  
+  <rect x="155" y="300" width="125" height="80" fill="white" rx="15"/>
+  <text x="217" y="325" text-anchor="middle" fill="#FF6B6B" font-family="Arial" font-size="14" font-weight="bold">Sleep</text>
+  <text x="217" y="345" text-anchor="middle" fill="#666" font-family="Arial" font-size="20" font-weight="bold">7.5h</text>
+  
+  <!-- Bottom Navigation -->
+  <rect x="0" y="560" width="300" height="40" fill="white"/>
+  <circle cx="75" cy="580" r="15" fill="#FF6B6B"/>
+  <circle cx="150" cy="580" r="15" fill="#ddd"/>
+  <circle cx="225" cy="580" r="15" fill="#ddd"/>
+</svg> 
