@@ -440,13 +440,19 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
 
             try {
+                console.log("Sending request to /api/contacts with data:", { name, email, message });
+                
                 const res = await fetch("https://fullstacktanay-production.up.railway.app/api/contacts", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message })
                 });
 
+                console.log("Response status:", res.status);
+                console.log("Response headers:", res.headers);
+                
                 const data = await res.json();
+                console.log("Response data:", data);
 
                 if (res.ok) {
                     showMessage('✅ Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.', 'success');
