@@ -5,11 +5,13 @@ from datetime import datetime
 class Database:
     def __init__(self):
         # Railway MySQL configuration
-        self.host = os.environ.get('MYSQL_HOST', 'mysql.railway.internal')
+        self.host = os.environ.get('MYSQL_HOST', 'mysql-44n.railway.internal')
         self.port = int(os.environ.get('MYSQL_PORT', 3306))
         self.user = os.environ.get('MYSQL_USER', 'root')
-        self.password = os.environ.get('MYSQL_PASSWORD', 'GObSacAcQzjozmsxPixDRZSCfJGfTTQv')
+        self.password = os.environ.get('MYSQL_PASSWORD', 'hwqNskxJnhYQqBwnhKYurDwDmMTJqhXZ')
         self.database = os.environ.get('MYSQL_DATABASE', 'railway')
+        self.MYSQL_URL = os.environ.get('MYSQL_URL', 'mysql://root:hwqNskxJnhYQqBwnhKYurDwDmMTJqhXZ@mysql-44n.railway.internal:3306/railway')
+
         
     def get_connection(self):
         """Get MySQL database connection"""
