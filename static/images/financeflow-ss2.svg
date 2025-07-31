@@ -1,0 +1,58 @@
+<svg width="300" height="600" viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ECDC4;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#44A08D;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Status Bar -->
+  <rect x="0" y="0" width="300" height="40" fill="#4ECDC4"/>
+  <text x="150" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="12">FinanceFlow</text>
+  
+  <!-- Budget Overview -->
+  <rect x="20" y="60" width="260" height="120" fill="white" rx="15"/>
+  <text x="150" y="85" text-anchor="middle" fill="#4ECDC4" font-family="Arial" font-size="16" font-weight="bold">Monthly Budget</text>
+  <text x="150" y="110" text-anchor="middle" fill="#333" font-family="Arial" font-size="28" font-weight="bold">$2,450</text>
+  <text x="150" y="130" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Spent: $1,850 | Remaining: $600</text>
+  <text x="150" y="145" text-anchor="middle" fill="#4ECDC4" font-family="Arial" font-size="12">75% used</text>
+  
+  <!-- Progress Bar -->
+  <rect x="40" y="160" width="220" height="8" fill="#f0f0f0" rx="4"/>
+  <rect x="40" y="160" width="165" height="8" fill="#4ECDC4" rx="4"/>
+  
+  <!-- Categories -->
+  <rect x="20" y="190" width="260" height="200" fill="white" rx="15"/>
+  <text x="150" y="215" text-anchor="middle" fill="#4ECDC4" font-family="Arial" font-size="16" font-weight="bold">Spending by Category</text>
+  
+  <rect x="30" y="230" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <rect x="40" y="240" width="20" height="20" fill="#FF6B6B" rx="4"/>
+  <text x="70" y="250" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Food & Dining</text>
+  <text x="70" y="265" text-anchor="start" fill="#666" font-family="Arial" font-size="10">$450</text>
+  <text x="250" y="255" text-anchor="end" fill="#666" font-family="Arial" font-size="12">18%</text>
+  
+  <rect x="30" y="280" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <rect x="40" y="290" width="20" height="20" fill="#4ECDC4" rx="4"/>
+  <text x="70" y="300" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Transportation</text>
+  <text x="70" y="315" text-anchor="start" fill="#666" font-family="Arial" font-size="10">$320</text>
+  <text x="250" y="305" text-anchor="end" fill="#666" font-family="Arial" font-size="12">13%</text>
+  
+  <rect x="30" y="330" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <rect x="40" y="340" width="20" height="20" fill="#FFD93D" rx="4"/>
+  <text x="70" y="350" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Entertainment</text>
+  <text x="70" y="365" text-anchor="start" fill="#666" font-family="Arial" font-size="10">$280</text>
+  <text x="250" y="355" text-anchor="end" fill="#666" font-family="Arial" font-size="12">11%</text>
+  
+  <rect x="30" y="380" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <rect x="40" y="390" width="20" height="20" fill="#6C5CE7" rx="4"/>
+  <text x="70" y="400" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Shopping</text>
+  <text x="70" y="415" text-anchor="start" fill="#666" font-family="Arial" font-size="10">$200</text>
+  <text x="250" y="405" text-anchor="end" fill="#666" font-family="Arial" font-size="12">8%</text>
+  
+  <!-- Bottom Navigation -->
+  <rect x="0" y="560" width="300" height="40" fill="white"/>
+  <circle cx="75" cy="580" r="15" fill="#ddd"/>
+  <circle cx="150" cy="580" r="15" fill="#4ECDC4"/>
+  <circle cx="225" cy="580" r="15" fill="#ddd"/>
+</svg> 

@@ -1,0 +1,56 @@
+<svg width="300" height="600" viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#FF8E8E;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Status Bar -->
+  <rect x="0" y="0" width="300" height="40" fill="#FF6B6B"/>
+  <text x="150" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="12">HealthTracker Pro</text>
+  
+  <!-- Profile Section -->
+  <rect x="20" y="60" width="260" height="100" fill="white" rx="15"/>
+  <text x="150" y="85" text-anchor="middle" fill="#FF6B6B" font-family="Arial" font-size="16" font-weight="bold">Profile</text>
+  <text x="150" y="105" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Age: 28 | Height: 175cm</text>
+  <text x="150" y="120" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Weight: 70kg | BMI: 22.9</text>
+  <text x="150" y="135" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Goal: Lose 5kg</text>
+  
+  <!-- Nutrition -->
+  <rect x="20" y="180" width="125" height="80" fill="white" rx="15"/>
+  <text x="82" y="205" text-anchor="middle" fill="#FF6B6B" font-family="Arial" font-size="14" font-weight="bold">Calories</text>
+  <text x="82" y="225" text-anchor="middle" fill="#666" font-family="Arial" font-size="20" font-weight="bold">1,850</text>
+  <text x="82" y="240" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">/ 2,100</text>
+  
+  <rect x="155" y="180" width="125" height="80" fill="white" rx="15"/>
+  <text x="217" y="205" text-anchor="middle" fill="#FF6B6B" font-family="Arial" font-size="14" font-weight="bold">Water</text>
+  <text x="217" y="225" text-anchor="middle" fill="#666" font-family="Arial" font-size="20" font-weight="bold">1.8L</text>
+  <text x="217" y="240" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">/ 2.5L</text>
+  
+  <!-- Settings -->
+  <rect x="20" y="280" width="260" height="200" fill="white" rx="15"/>
+  <text x="150" y="305" text-anchor="middle" fill="#FF6B6B" font-family="Arial" font-size="16" font-weight="bold">Settings</text>
+  
+  <rect x="30" y="320" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="335" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Notifications</text>
+  <text x="50" y="350" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Remind me to drink water</text>
+  <circle cx="250" cy="340" r="10" fill="#FF6B6B"/>
+  
+  <rect x="30" y="370" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="385" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Apple Health Sync</text>
+  <text x="50" y="400" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Sync with Health app</text>
+  <circle cx="250" cy="390" r="10" fill="#FF6B6B"/>
+  
+  <rect x="30" y="420" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="435" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Dark Mode</text>
+  <text x="50" y="450" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Use dark theme</text>
+  <circle cx="250" cy="440" r="10" fill="#ddd"/>
+  
+  <!-- Bottom Navigation -->
+  <rect x="0" y="560" width="300" height="40" fill="white"/>
+  <circle cx="75" cy="580" r="15" fill="#ddd"/>
+  <circle cx="150" cy="580" r="15" fill="#ddd"/>
+  <circle cx="225" cy="580" r="15" fill="#FF6B6B"/>
+</svg> 

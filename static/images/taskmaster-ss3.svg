@@ -1,0 +1,64 @@
+<svg width="300" height="600" viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Status Bar -->
+  <rect x="0" y="0" width="300" height="40" fill="#667eea"/>
+  <text x="150" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="12">TaskMaster</text>
+  
+  <!-- Analytics -->
+  <rect x="20" y="60" width="260" height="80" fill="white" rx="15"/>
+  <text x="150" y="85" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="16" font-weight="bold">Productivity Stats</text>
+  <text x="150" y="105" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">This week: 85% completion</text>
+  <text x="150" y="120" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="12">+12% vs last week</text>
+  
+  <!-- Charts -->
+  <rect x="20" y="160" width="125" height="120" fill="white" rx="15"/>
+  <text x="82" y="185" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="14" font-weight="bold">Daily Tasks</text>
+  
+  <!-- Bar Chart -->
+  <rect x="40" y="200" width="15" height="40" fill="#667eea"/>
+  <rect x="60" y="210" width="15" height="30" fill="#667eea"/>
+  <rect x="80" y="195" width="15" height="45" fill="#667eea"/>
+  <rect x="100" y="205" width="15" height="35" fill="#667eea"/>
+  <rect x="120" y="190" width="15" height="50" fill="#667eea"/>
+  
+  <text x="82" y="270" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">Mon-Fri</text>
+  
+  <rect x="155" y="160" width="125" height="120" fill="white" rx="15"/>
+  <text x="217" y="185" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="14" font-weight="bold">Categories</text>
+  
+  <!-- Pie Chart -->
+  <circle cx="217" cy="220" r="30" fill="#667eea"/>
+  <circle cx="217" cy="220" r="30" fill="none" stroke="#4ECDC4" stroke-width="8" stroke-dasharray="94" stroke-dashoffset="47"/>
+  <circle cx="217" cy="220" r="30" fill="none" stroke="#FF6B6B" stroke-width="8" stroke-dasharray="94" stroke-dashoffset="70"/>
+  
+  <text x="217" y="270" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">Work/Personal</text>
+  
+  <!-- Recent Activity -->
+  <rect x="20" y="300" width="260" height="200" fill="white" rx="15"/>
+  <text x="150" y="325" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="16" font-weight="bold">Recent Activity</text>
+  
+  <rect x="30" y="340" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="355" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Sarah completed "Design Review"</text>
+  <text x="50" y="370" text-anchor="start" fill="#666" font-family="Arial" font-size="10">2 minutes ago</text>
+  
+  <rect x="30" y="390" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="405" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Mike added "Client Meeting"</text>
+  <text x="50" y="420" text-anchor="start" fill="#666" font-family="Arial" font-size="10">15 minutes ago</text>
+  
+  <rect x="30" y="440" width="240" height="40" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="455" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">You completed "Weekly Report"</text>
+  <text x="50" y="470" text-anchor="start" fill="#666" font-family="Arial" font-size="10">1 hour ago</text>
+  
+  <!-- Bottom Navigation -->
+  <rect x="0" y="560" width="300" height="40" fill="white"/>
+  <circle cx="75" cy="580" r="15" fill="#ddd"/>
+  <circle cx="150" cy="580" r="15" fill="#ddd"/>
+  <circle cx="225" cy="580" r="15" fill="#667eea"/>
+</svg> 

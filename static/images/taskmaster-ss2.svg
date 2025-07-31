@@ -1,0 +1,60 @@
+<svg width="300" height="600" viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Status Bar -->
+  <rect x="0" y="0" width="300" height="40" fill="#667eea"/>
+  <text x="150" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="12">TaskMaster</text>
+  
+  <!-- Team Collaboration -->
+  <rect x="20" y="60" width="260" height="80" fill="white" rx="15"/>
+  <text x="150" y="85" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="16" font-weight="bold">Team Projects</text>
+  <text x="150" y="105" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">3 active projects</text>
+  <text x="150" y="120" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="12">8 team members</text>
+  
+  <!-- Project List -->
+  <rect x="20" y="160" width="260" height="300" fill="white" rx="15"/>
+  <text x="150" y="185" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="16" font-weight="bold">Active Projects</text>
+  
+  <rect x="30" y="200" width="240" height="80" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="215" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Mobile App Redesign</text>
+  <text x="50" y="230" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Due: March 25, 2024</text>
+  <text x="50" y="245" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Progress: 75% • 4 members</text>
+  <rect x="50" y="250" width="120" height="4" fill="#ddd" rx="2"/>
+  <rect x="50" y="250" width="90" height="4" fill="#667eea" rx="2"/>
+  
+  <rect x="30" y="290" width="240" height="80" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="305" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Q4 Marketing Campaign</text>
+  <text x="50" y="320" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Due: December 15, 2024</text>
+  <text x="50" y="335" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Progress: 45% • 6 members</text>
+  <rect x="50" y="340" width="120" height="4" fill="#ddd" rx="2"/>
+  <rect x="50" y="340" width="54" height="4" fill="#667eea" rx="2"/>
+  
+  <rect x="30" y="380" width="240" height="80" fill="#f8f9fa" rx="8"/>
+  <text x="50" y="395" text-anchor="start" fill="#333" font-family="Arial" font-size="12" font-weight="bold">Website Optimization</text>
+  <text x="50" y="410" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Due: February 10, 2024</text>
+  <text x="50" y="425" text-anchor="start" fill="#666" font-family="Arial" font-size="10">Progress: 90% • 3 members</text>
+  <rect x="50" y="430" width="120" height="4" fill="#ddd" rx="2"/>
+  <rect x="50" y="430" width="108" height="4" fill="#667eea" rx="2"/>
+  
+  <!-- Team Members -->
+  <rect x="20" y="480" width="260" height="60" fill="white" rx="15"/>
+  <text x="150" y="500" text-anchor="middle" fill="#667eea" font-family="Arial" font-size="14" font-weight="bold">Team Members</text>
+  <circle cx="80" cy="520" r="15" fill="#667eea"/>
+  <circle cx="110" cy="520" r="15" fill="#4ECDC4"/>
+  <circle cx="140" cy="520" r="15" fill="#FF6B6B"/>
+  <circle cx="170" cy="520" r="15" fill="#FFD93D"/>
+  <circle cx="200" cy="520" r="15" fill="#6C5CE7"/>
+  <text x="150" y="540" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">+3 more</text>
+  
+  <!-- Bottom Navigation -->
+  <rect x="0" y="560" width="300" height="40" fill="white"/>
+  <circle cx="75" cy="580" r="15" fill="#ddd"/>
+  <circle cx="150" cy="580" r="15" fill="#667eea"/>
+  <circle cx="225" cy="580" r="15" fill="#ddd"/>
+</svg> 
