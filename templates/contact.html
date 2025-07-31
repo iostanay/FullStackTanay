@@ -281,6 +281,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Clear any previous field highlights
+        highlightField('name', false);
+        highlightField('email', false);
+        highlightField('message', false);
+        
         // Show loading state
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
@@ -338,6 +343,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }, hideTime);
         
         console.log(`${type.toUpperCase()}: ${message}`);
+    }
+    
+    function highlightField(fieldId, isError) {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            if (isError) {
+                field.classList.add('is-invalid');
+                field.classList.remove('is-valid');
+            } else {
+                field.classList.remove('is-invalid');
+                field.classList.add('is-valid');
+            }
+        }
     }
 });
 </script>
