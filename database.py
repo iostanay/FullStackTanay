@@ -60,9 +60,40 @@ class Database:
             if connection:
                 connection.close()
     
+    def ensure_table_exists(self):
+        """Ensure the contacts table exists (called before each operation)"""
+        try:
+            connection = self.get_connection()
+            if not connection:
+                return False
+                
+            with connection.cursor() as cursor:
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS contacts(
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        name VARCHAR(255) NOT NULL,
+                        email VARCHAR(255) NOT NULL,
+                        message TEXT NOT NULL,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+                """)
+                connection.commit()
+                return True
+        except Exception as e:
+            print(f"Error ensuring table exists: {e}")
+            return False
+        finally:
+            if connection:
+                connection.close()
+    
     def add_contact(self, name, email, message):
         """Add a new contact message to the database"""
         try:
+            # Ensure table exists before inserting
+            if not self.ensure_table_exists():
+                print("Could not ensure table exists")
+                return False
+                
             connection = self.get_connection()
             if not connection:
                 print("No database connection available")
@@ -84,6 +115,11 @@ class Database:
     def get_contacts(self, limit=50):
         """Get all contacts from the database"""
         try:
+            # Ensure table exists before querying
+            if not self.ensure_table_exists():
+                print("Could not ensure table exists")
+                return []
+                
             connection = self.get_connection()
             if not connection:
                 print("No database connection available")
