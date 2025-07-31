@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block title %}Experience - Alex Chen{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center hero-content">
+                <h1 class="section-title">Professional Experience</h1>
+                <p class="section-subtitle">A decade of building exceptional iOS applications</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Timeline -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                {% for exp in developer.experience %}
+                <div class="experience-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="mb-2">{{ exp.company }}</h4>
+                            <p class="text-primary mb-1">{{ exp.position }}</p>
+                            <p class="text-muted">{{ exp.duration }}</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="mb-3">{{ exp.description }}</p>
+                            <div class="mb-3">
+                                <strong>Key Achievements:</strong>
+                                <ul class="list-unstyled mt-2">
+                                    {% for achievement in exp.achievements %}
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>{{ achievement }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Career Highlights -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="section-title">Career Highlights</h2>
+                <p class="text-muted">Key milestones and achievements throughout my career</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 60px; height: 60px;">
+                                <i class="fas fa-mobile-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">25+ Apps Built</h5>
+                                <p class="text-muted mb-0">From concept to App Store</p>
+                            </div>
+                        </div>
+                        <p class="text-muted">Developed and launched over 25 iOS applications across various industries including health, finance, productivity, and entertainment.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 60px; height: 60px;">
+                                <i class="fas fa-download text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">5M+ Downloads</h5>
+                                <p class="text-muted mb-0">Combined app downloads</p>
+                            </div>
+                        </div>
+                        <p class="text-muted">My applications have been downloaded over 5 million times across the App Store, with consistently high ratings.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 60px; height: 60px;">
+                                <i class="fas fa-users text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Team Leadership</h5>
+                                <p class="text-muted mb-0">Led development teams</p>
+                            </div>
+                        </div>
+                        <p class="text-muted">Successfully led iOS development teams of up to 8 developers, mentoring junior developers and establishing best practices.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 60px; height: 60px;">
+                                <i class="fas fa-chart-line text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Performance Optimization</h5>
+                                <p class="text-muted mb-0">40% performance improvement</p>
+                            </div>
+                        </div>
+                        <p class="text-muted">Implemented advanced optimization techniques that improved app performance by 40% and reduced crash rates by 60%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technical Evolution -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="section-title">Technical Evolution</h2>
+                <p class="text-muted">How my skills have evolved over 10 years</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                         style="width: 80px; height: 80px;">
+                        <span class="text-white fw-bold">2015-2018</span>
+                    </div>
+                    <h5>Foundation Years</h5>
+                    <p class="text-muted">Mastered UIKit, Core Data, and fundamental iOS development patterns. Built 15+ client projects.</p>
+                    <div class="mt-3">
+                        <span class="skill-tag">UIKit</span>
+                        <span class="skill-tag">Core Data</span>
+                        <span class="skill-tag">Objective-C</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                         style="width: 80px; height: 80px;">
+                        <span class="text-white fw-bold">2018-2020</span>
+                    </div>
+                    <h5>Growth Phase</h5>
+                    <p class="text-muted">Adopted Swift, learned advanced patterns, and launched successful apps to the App Store.</p>
+                    <div class="mt-3">
+                        <span class="skill-tag">Swift</span>
+                        <span class="skill-tag">MVVM</span>
+                        <span class="skill-tag">Combine</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                         style="width: 80px; height: 80px;">
+                        <span class="text-white fw-bold">2020+</span>
+                    </div>
+                    <h5>Leadership Era</h5>
+                    <p class="text-muted">Leading teams, implementing SwiftUI, and building apps used by millions of users.</p>
+                    <div class="mt-3">
+                        <span class="skill-tag">SwiftUI</span>
+                        <span class="skill-tag">ARKit</span>
+                        <span class="skill-tag">Core ML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills by Experience Level -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="section-title">Skills by Experience Level</h2>
+                <p class="text-muted">Expertise levels across different technologies</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Expert Level (5+ years)</h5>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>Swift</span>
+                                <div class="progress" style="width: 60%;">
+                                    <div class="progress-bar bg-success" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>UIKit</span>
+                                <div class="progress" style="width: 60%;">
+                                    <div class="progress-bar bg-success" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>Core Data</span>
+                                <div class="progress" style="width: 60%;">
+                                    <div class="progress-bar bg-success" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Advanced Level (3-5 years)</h5>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>SwiftUI</span>
+                                <div class="progress" style="width: 60%;">
+                                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>Combine</span>
+                                <div class="progress" style="width: 60%;">
+                                    <div class="progress-bar bg-primary" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>ARKit</span>
+                                <div class="progress" style="width: 60%;">
+                                    <div class="progress-bar bg-primary" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

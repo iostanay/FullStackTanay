@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}Alex Chen - Senior iOS Developer{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 hero-content">
+                <h1 class="section-title">Hi, I'm Alex Chen</h1>
+                <h2 class="section-subtitle">Senior iOS Developer with 10+ Years of Experience</h2>
+                <p class="mb-4" style="font-size: 1.1rem; opacity: 0.9;">
+                    I specialize in building exceptional iOS applications that millions of users love. 
+                    From concept to App Store, I bring ideas to life with clean code and beautiful interfaces.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="/projects" class="btn btn-primary">
+                        <i class="fas fa-rocket me-2"></i>View My Work
+                    </a>
+                    <a href="/contact" class="btn btn-outline-light">
+                        <i class="fas fa-envelope me-2"></i>Get In Touch
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="position-relative">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                         style="width: 200px; height: 200px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                        <i class="fab fa-apple" style="font-size: 4rem; color: #007AFF;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stats-card">
+                    <div class="stats-number">10+</div>
+                    <div class="stats-label">Years Experience</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stats-card">
+                    <div class="stats-number">25+</div>
+                    <div class="stats-label">Apps Built</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stats-card">
+                    <div class="stats-number">5M+</div>
+                    <div class="stats-label">Downloads</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stats-card">
+                    <div class="stats-number">4.8</div>
+                    <div class="stats-label">Avg App Rating</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="text-muted">Mastering the latest iOS technologies and best practices</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-code text-primary me-2"></i>
+                            Programming Languages
+                        </h5>
+                        <div class="mt-3">
+                            {% for skill in developer.skills.languages %}
+                            <span class="skill-tag">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-mobile-alt text-primary me-2"></i>
+                            iOS Frameworks
+                        </h5>
+                        <div class="mt-3">
+                            {% for skill in developer.skills.frameworks %}
+                            <span class="skill-tag">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-tools text-primary me-2"></i>
+                            Development Tools
+                        </h5>
+                        <div class="mt-3">
+                            {% for skill in developer.skills.tools %}
+                            <span class="skill-tag">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-sitemap text-primary me-2"></i>
+                            Architecture Patterns
+                        </h5>
+                        <div class="mt-3">
+                            {% for skill in developer.skills.architectures %}
+                            <span class="skill-tag">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="text-muted">Some of my recent work that showcases my expertise</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for project in developer.projects[:3] %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="project-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                             style="width: 50px; height: 50px;">
+                            <i class="fas fa-mobile-alt text-white"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">{{ project.name }}</h5>
+                            <div class="text-muted small">
+                                <i class="fas fa-star text-warning"></i>
+                                {{ project.app_store_rating }} | {{ project.downloads }} downloads
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-muted mb-3">{{ project.description }}</p>
+                    
+                    <div class="mb-3">
+                        <strong>Technologies:</strong>
+                        <div class="mt-2">
+                            {% for tech in project.technologies %}
+                            <span class="skill-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Key Features:</strong>
+                        <ul class="list-unstyled mt-2">
+                            {% for feature in project.features %}
+                            <li><i class="fas fa-check text-success me-2"></i>{{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="/projects" class="btn btn-primary">
+                <i class="fas fa-eye me-2"></i>View All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title">Ready to Build Something Amazing?</h2>
+                <p class="text-muted mb-4">
+                    Let's discuss your next iOS project. I'm always excited to work on new challenges 
+                    and bring innovative ideas to life.
+                </p>
+                <a href="/contact" class="btn btn-primary btn-lg">
+                    <i class="fas fa-paper-plane me-2"></i>Start a Conversation
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
