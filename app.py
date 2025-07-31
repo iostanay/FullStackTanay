@@ -61,7 +61,8 @@ developer_data = {
             "technologies": ["SwiftUI", "HealthKit", "Core Data", "CloudKit"],
             "features": ["Real-time health monitoring", "Custom dashboards", "Apple Watch companion"],
             "app_store_rating": "4.8/5",
-            "downloads": "500K+"
+            "downloads": "500K+",
+            "app_store_link": "https://apps.apple.com/app/healthtracker-pro/id1234567890"
         },
         {
             "name": "FinanceFlow",
@@ -69,7 +70,8 @@ developer_data = {
             "technologies": ["Swift", "UIKit", "Core ML", "Firebase"],
             "features": ["Expense tracking", "Budget planning", "Investment insights"],
             "app_store_rating": "4.6/5",
-            "downloads": "200K+"
+            "downloads": "200K+",
+            "app_store_link": "https://apps.apple.com/app/financeflow/id0987654321"
         },
         {
             "name": "TaskMaster",
@@ -77,7 +79,8 @@ developer_data = {
             "technologies": ["SwiftUI", "Combine", "CloudKit", "Push Notifications"],
             "features": ["Task management", "Team collaboration", "Real-time sync"],
             "app_store_rating": "4.7/5",
-            "downloads": "150K+"
+            "downloads": "150K+",
+            "app_store_link": "https://apps.apple.com/app/taskmaster/id1122334455"
         }
     ],
     "education": [
