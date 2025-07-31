@@ -363,136 +363,114 @@
 
 {% block extra_js %}
 <script>
-(function () {
-    function initContactForm() {
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const formMessage = document.getElementById('formMessage');
-
-        if (!contactForm || !submitBtn) return;
-
-        // Real-time validation
-        const fields = ['name', 'email', 'message'];
-        fields.forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (field) {
-                field.addEventListener('blur', () => validateField(field));
-                field.addEventListener('input', () => {
-                    if (field.classList.contains('is-invalid')) {
-                        validateField(field);
-                    }
-                });
+    window.addEventListener('load', function () {
+      const contactForm = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const formMessage = document.getElementById('formMessage');
+    
+      if (!contactForm || !submitBtn) return;
+    
+      const fields = ['name', 'email', 'message'];
+      fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.addEventListener('blur', () => validateField(field));
+          field.addEventListener('input', () => {
+            if (field.classList.contains('is-invalid')) {
+              validateField(field);
             }
-        });
-
-        function validateField(field) {
-            const value = field.value.trim();
-            const fieldType = field.type;
-            const fieldName = field.id;
-
-            field.classList.remove('is-invalid', 'is-valid');
-
-            if (!value) {
-                field.classList.add('is-invalid');
-                return false;
-            }
-
-            if (fieldType === 'email') {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
-                    field.classList.add('is-invalid');
-                    return false;
-                }
-            }
-
-            if (fieldName === 'message' && value.length < 10) {
-                field.classList.add('is-invalid');
-                return false;
-            }
-
-            field.classList.add('is-valid');
-            return true;
+          });
         }
-
-        contactForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const nameField = document.getElementById('name');
-            const emailField = document.getElementById('email');
-            const messageField = document.getElementById('message');
-
-            const name = nameField.value.trim();
-            const email = emailField.value.trim();
-            const message = messageField.value.trim();
-
-            // Validate all fields
-            const isNameValid = validateField(nameField);
-            const isEmailValid = validateField(emailField);
-            const isMessageValid = validateField(messageField);
-
-            if (!isNameValid || !isEmailValid || !isMessageValid) {
-                showMessage('Please fill in all required fields correctly.', 'error');
-                return;
-            }
-
-            // Disable button while submitting
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-
-            try {
-                console.log("Sending request to /api/contacts with data:", { name, email, message });
-                
-                const res = await fetch("https://fullstacktanay-production.up.railway.app/api/contacts", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, message })
-                });
-
-                console.log("Response status:", res.status);
-                console.log("Response headers:", res.headers);
-                
-                const data = await res.json();
-                console.log("Response data:", data);
-
-                if (res.ok) {
-                    showMessage('✅ Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.', 'success');
-                    contactForm.reset();
-                    // Remove validation classes
-                    [nameField, emailField, messageField].forEach(field => {
-                        field.classList.remove('is-valid', 'is-invalid');
-                    });
-                } else {
-                    showMessage(data.error || '❌ Failed to send message. Please try again.', 'error');
-                }
-            } catch (err) {
-                console.error('Contact form error:', err);
-                showMessage('❌ Network error. Please check your connection and try again.', 'error');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
-            }
-        });
-
-        function showMessage(msg, type) {
-            formMessage.textContent = msg;
-            formMessage.className = `alert alert-${type === 'success' ? 'success' : 'danger'} mt-3`;
-            formMessage.style.display = 'block';
-
-            // Scroll to message
-            formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Auto-hide after delay
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, type === 'success' ? 8000 : 10000);
+      });
+    
+      function validateField(field) {
+        const value = field.value.trim();
+        const fieldType = field.type;
+        const fieldName = field.id;
+    
+        field.classList.remove('is-invalid', 'is-valid');
+    
+        if (!value) {
+          field.classList.add('is-invalid');
+          return false;
         }
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initContactForm);
-    } else {
-        initContactForm();
-    }
-})();
-</script>
+    
+        if (fieldType === 'email') {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            field.classList.add('is-invalid');
+            return false;
+          }
+        }
+    
+        if (fieldName === 'message' && value.length < 10) {
+          field.classList.add('is-invalid');
+          return false;
+        }
+    
+        field.classList.add('is-valid');
+        return true;
+      }
+    
+      contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+    
+        const nameField = document.getElementById('name');
+        const emailField = document.getElementById('email');
+        const messageField = document.getElementById('message');
+    
+        const name = nameField.value.trim();
+        const email = emailField.value.trim();
+        const message = messageField.value.trim();
+    
+        const isNameValid = validateField(nameField);
+        const isEmailValid = validateField(emailField);
+        const isMessageValid = validateField(messageField);
+    
+        if (!isNameValid || !isEmailValid || !isMessageValid) {
+          showMessage('Please fill in all required fields correctly.', 'error');
+          return;
+        }
+    
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+    
+        try {
+          const res = await fetch("https://fullstacktanay-production.up.railway.app/api/contacts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, message })
+          });
+    
+          const data = await res.json();
+    
+          if (res.ok) {
+            showMessage('✅ Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.', 'success');
+            contactForm.reset();
+            [nameField, emailField, messageField].forEach(field => {
+              field.classList.remove('is-valid', 'is-invalid');
+            });
+          } else {
+            showMessage(data.error || '❌ Failed to send message. Please try again.', 'error');
+          }
+        } catch (err) {
+          console.error('Contact form error:', err);
+          showMessage('❌ Network error. Please check your connection and try again.', 'error');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
+        }
+      });
+    
+      function showMessage(msg, type) {
+        formMessage.textContent = msg;
+        formMessage.className = `alert alert-${type === 'success' ? 'success' : 'danger'} mt-3`;
+        formMessage.classList.remove('d-none');
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          formMessage.classList.add('d-none');
+        }, type === 'success' ? 8000 : 10000);
+      }
+    });
+    </script>
 {% endblock %}
