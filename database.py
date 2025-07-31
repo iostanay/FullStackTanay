@@ -5,7 +5,7 @@ from datetime import datetime
 class Database:
     def __init__(self):
         # Railway MySQL configuration
-        self.host = os.environ.get('MYSQL_HOST', 'mysql.railway.internal')
+        self.host = os.environ.get('MYSQL_HOST', 'mysql-production-d6f7.up.railway.app')
         self.port = int(os.environ.get('MYSQL_PORT', 3306))
         self.user = os.environ.get('MYSQL_USER', 'root')
         self.password = os.environ.get('MYSQL_PASSWORD', 'GObSacAcQzjozmsxPixDRZSCfJGfTTQv')
@@ -21,7 +21,9 @@ class Database:
                 password=self.password,
                 database=self.database,
                 charset='utf8mb4',
-                cursorclass=pymysql.cursors.DictCursor
+                cursorclass=pymysql.cursors.DictCursor,
+                connect_timeout=10,
+                read_timeout=10
             )
             return connection
         except Exception as e:
@@ -30,11 +32,12 @@ class Database:
     
     def init_database(self):
         """Initialize database and create tables"""
-        connection = self.get_connection()
-        if not connection:
-            return False
-            
         try:
+            connection = self.get_connection()
+            if not connection:
+                print("Could not connect to database. Contact form will work without database storage.")
+                return False
+                
             with connection.cursor() as cursor:
                 # Create contacts table
                 cursor.execute("""
@@ -51,35 +54,41 @@ class Database:
                 return True
         except Exception as e:
             print(f"Database initialization error: {e}")
+            print("Contact form will work without database storage.")
             return False
         finally:
-            connection.close()
+            if connection:
+                connection.close()
     
     def add_contact(self, name, email, message):
         """Add a new contact message to the database"""
-        connection = self.get_connection()
-        if not connection:
-            return False
-            
         try:
+            connection = self.get_connection()
+            if not connection:
+                print("No database connection available")
+                return False
+                
             with connection.cursor() as cursor:
                 sql = "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)"
                 cursor.execute(sql, (name, email, message))
                 connection.commit()
+                print(f"Contact message saved: {name} ({email})")
                 return True
         except Exception as e:
             print(f"Error adding contact: {e}")
             return False
         finally:
-            connection.close()
+            if connection:
+                connection.close()
     
     def get_contacts(self, limit=50):
         """Get all contacts from the database"""
-        connection = self.get_connection()
-        if not connection:
-            return []
-            
         try:
+            connection = self.get_connection()
+            if not connection:
+                print("No database connection available")
+                return []
+                
             with connection.cursor() as cursor:
                 sql = "SELECT id, name, email, message, created_at FROM contacts ORDER BY created_at DESC LIMIT %s"
                 cursor.execute(sql, (limit,))
@@ -88,7 +97,8 @@ class Database:
             print(f"Error getting contacts: {e}")
             return []
         finally:
-            connection.close()
+            if connection:
+                connection.close()
     
     def get_contact_by_id(self, contact_id):
         """Get a specific contact by ID"""
