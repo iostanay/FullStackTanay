@@ -26,7 +26,7 @@ developer_data = {
     "experience": "10+ Years",
     "location": "San Francisco, CA",
     "email": "tanay.bhattacharjee@email.com",
-    "phone": "+1 (415) 555-0123",
+    "phone": "+91 8276097093",
     "github": "github.com/tanaybhattacharjee",
     "linkedin": "linkedin.com/in/tanaybhattacharjee",
     "about": "Passionate iOS developer with over 10 years of experience building high-quality mobile applications. Specialized in Swift, SwiftUI, and iOS architecture patterns. Led development teams and delivered apps used by millions of users.",
@@ -146,8 +146,59 @@ def experience():
 def projects():
     return render_template('projects.html', developer=developer_data)
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        # Get form data
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        message = request.form.get('message', '').strip()
+        
+        errors = {}
+        success = False
+        
+        # Server-side validation
+        if not name:
+            errors['name'] = 'Name is required'
+        elif len(name) < 2:
+            errors['name'] = 'Name must be at least 2 characters'
+            
+        if not email:
+            errors['email'] = 'Email is required'
+        elif '@' not in email or '.' not in email:
+            errors['email'] = 'Please enter a valid email address'
+            
+        if not message:
+            errors['message'] = 'Message is required'
+        elif len(message) < 10:
+            errors['message'] = 'Message must be at least 10 characters'
+        
+        # If no errors, save to database
+        if not errors:
+            try:
+                success = db.add_contact(name, email, message)
+                if success:
+                    return render_template('contact.html', 
+                                         developer=developer_data,
+                                         message='✅ Message sent successfully! I\'ll get back to you soon.',
+                                         success=True)
+                else:
+                    errors['general'] = 'Failed to send message. Please try again.'
+            except Exception as e:
+                print(f"Database error: {e}")
+                errors['general'] = 'Server error. Please try again later.'
+        
+        # If there are errors, show them
+        if errors:
+            return render_template('contact.html', 
+                                 developer=developer_data,
+                                 name=name,
+                                 email=email,
+                                 message=message,
+                                 errors=errors,
+                                 success=False)
+    
+    # GET request - show empty form
     return render_template('contact.html', developer=developer_data)
 
 @app.route('/api/developer')

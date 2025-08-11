@@ -15,19 +15,6 @@
     box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
   }
   
-  .btn-primary:disabled {
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .btn-text, .btn-loading {
-    transition: opacity 0.3s ease;
-  }
-  
-  .btn-loading {
-    opacity: 0.9;
-  }
-  
   .form-control:focus {
     border-color: #0d6efd;
     box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
@@ -42,10 +29,42 @@
     border-color: #dc3545 !important;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
   }
+  
+  .page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #0d6efd;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 </style>
 {% endblock %}
 
 {% block content %}
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-spinner"></div>
+</div>
+
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -54,28 +73,46 @@
           <h2 class="mb-0"><i class="fas fa-envelope me-2"></i>Send Me a Message</h2>
         </div>
         <div class="card-body">
-          <form id="contactForm" novalidate>
+          {% if message %}
+            <div class="alert alert-{{ 'success' if success else 'danger' }} mb-3">
+              {{ message }}
+            </div>
+          {% endif %}
+          
+          <form method="POST" action="/contact">
             <div class="mb-3">
               <label for="name" class="form-label">Your Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+              <input type="text" class="form-control {{ 'is-invalid' if errors and errors.name else 'is-valid' if name else '' }}" 
+                     id="name" name="name" placeholder="Your Name" 
+                     value="{{ name or '' }}" required>
+              {% if errors and errors.name %}
+                <div class="invalid-feedback">{{ errors.name }}</div>
+              {% endif %}
             </div>
+            
             <div class="mb-3">
               <label for="email" class="form-label">Your Email</label>
-              <input type="email" class="form-control" id="email" placeholder="your@email.com" required>
+              <input type="email" class="form-control {{ 'is-invalid' if errors and errors.email else 'is-valid' if email else '' }}" 
+                     id="email" name="email" placeholder="your@email.com" 
+                     value="{{ email or '' }}" required>
+              {% if errors and errors.email %}
+                <div class="invalid-feedback">{{ errors.email }}</div>
+              {% endif %}
             </div>
+            
             <div class="mb-3">
               <label for="message" class="form-label">Your Message</label>
-              <textarea class="form-control" id="message" rows="5" placeholder="Type your message here..." required></textarea>
+              <textarea class="form-control {{ 'is-invalid' if errors and errors.message else 'is-valid' if message else '' }}" 
+                        id="message" name="message" rows="5" placeholder="Type your message here..." 
+                        required>{{ message or '' }}</textarea>
+              {% if errors and errors.message %}
+                <div class="invalid-feedback">{{ errors.message }}</div>
+              {% endif %}
             </div>
-            <button type="submit" id="submitBtn" class="btn btn-primary btn-lg px-4">
-              <span class="btn-text">
-                <i class="fas fa-paper-plane me-2"></i>Send Message
-              </span>
-              <span class="btn-loading" style="display: none;">
-                <i class="fas fa-circle-notch fa-spin me-2"></i>Sending...
-              </span>
+            
+            <button type="submit" class="btn btn-primary btn-lg px-4" onclick="showLoader()">
+              <i class="fas fa-paper-plane me-2"></i>Send Message
             </button>
-            <div id="formMessage" class="mt-3" style="display: none;"></div>
           </form>
         </div>
       </div>
@@ -84,119 +121,8 @@
 </div>
 
 <script>
-(function () {
-  function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const formMessage = document.getElementById('formMessage');
-
-    if (!contactForm || !submitBtn) return;
-
-    contactForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const nameField = document.getElementById('name');
-      const emailField = document.getElementById('email');
-      const messageField = document.getElementById('message');
-
-      const name = nameField.value.trim();
-      const email = emailField.value.trim();
-      const message = messageField.value.trim();
-
-      // Reset validation styles
-      [nameField, emailField, messageField].forEach(field => {
-        field.classList.remove('is-invalid', 'is-valid');
-      });
-
-      // Validate fields
-      if (!name) {
-        highlightField(nameField, false);
-        return showMessage('Please enter your name.', 'error');
-      } else {
-        highlightField(nameField, true);
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!email) {
-        highlightField(emailField, false);
-        return showMessage('Please enter your email.', 'error');
-      } else if (!emailRegex.test(email)) {
-        highlightField(emailField, false);
-        return showMessage('Please enter a valid email address.', 'error');
-      } else {
-        highlightField(emailField, true);
-      }
-
-      if (!message || message.length < 10) {
-        highlightField(messageField, false);
-        return showMessage('Please enter a message (at least 10 characters).', 'error');
-      } else {
-        highlightField(messageField, true);
-      }
-
-      // Disable button while submitting
-      submitBtn.disabled = true;
-      const btnText = submitBtn.querySelector('.btn-text');
-      const btnLoading = submitBtn.querySelector('.btn-loading');
-      
-      btnText.style.display = 'none';
-      btnLoading.style.display = 'inline-block';
-
-      try {
-        console.log('Sending contact form data:', { name, email, message });
-        
-        const res = await fetch("https://fullstacktanay-production.up.railway.app/api/contacts", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, message })
-        });
-
-        console.log('Response status:', res.status);
-        const data = await res.json();
-        console.log('Response data:', data);
-
-        if (res.ok) {
-          showMessage('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
-          contactForm.reset();
-          // Reset validation styles after successful submission
-          [nameField, emailField, messageField].forEach(field => {
-            field.classList.remove('is-valid');
-          });
-        } else {
-          showMessage(data.error || '❌ Failed to send message. Please try again.', 'error');
-        }
-      } catch (err) {
-        console.error('Error sending message:', err);
-        showMessage('❌ Network error. Please check your connection and try again.', 'error');
-      } finally {
-        submitBtn.disabled = false;
-        btnText.style.display = 'inline-block';
-        btnLoading.style.display = 'none';
-      }
-    });
-
-    function highlightField(field, isValid) {
-      field.classList.remove('is-invalid', 'is-valid');
-      field.classList.add(isValid ? 'is-valid' : 'is-invalid');
-    }
-
-    function showMessage(msg, type) {
-      formMessage.textContent = msg;
-      formMessage.className = `alert alert-${type === 'success' ? 'success' : 'danger'} mt-3`;
-      formMessage.style.display = 'block';
-      formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      setTimeout(() => {
-        formMessage.style.display = 'none';
-      }, type === 'success' ? 5000 : 8000);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initContactForm);
-  } else {
-    initContactForm();
-  }
-})();
+function showLoader() {
+  document.getElementById('pageLoader').style.display = 'flex';
+}
 </script>
 {% endblock %}
