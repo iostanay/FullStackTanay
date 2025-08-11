@@ -155,9 +155,7 @@ function showLoaderAndSubmit() {
   .then(response => response.json())
   .then(data => {
     // Reset button state
-    submitBtn.disabled = false;
-    btnText.style.display = 'inline-block';
-    btnLoading.style.display = 'none';
+  
     
     if (data.status === 'success') {
       alert('✅ Message sent successfully!');
@@ -172,9 +170,7 @@ function showLoaderAndSubmit() {
   })
   .catch(error => {
     // Reset button state
-    submitBtn.disabled = false;
-    btnText.style.display = 'inline-block';
-    btnLoading.style.display = 'none';
+  
     
     alert('❌ Network error. Please try again.');
   });
