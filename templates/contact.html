@@ -110,9 +110,8 @@
               {% endif %}
             </div>
             
-            <button type="submit" class="btn btn-primary btn-lg px-4" onclick="showLoaderAndSubmit()">
-                <i class="fas fa-paper-plane me-2"></i>Send Message
-            
+                        <button type="submit" class="btn btn-primary btn-lg px-4" onclick="showLoaderAndSubmit()" id="submitBtn">
+              <i class="fas fa-paper-plane me-2"></i>Send Message
             </button>
           </form>
         </div>
@@ -135,13 +134,9 @@ function showLoaderAndSubmit() {
   }
   
   // Change button to loading state
-  // const submitBtn = document.getElementById('submitBtn');
-  // const btnText = submitBtn.querySelector('.btn-text');
-  // const btnLoading = submitBtn.querySelector('.btn-loading');
-  
-  // submitBtn.disabled = true;
-  // btnText.style.display = 'none';
-  // btnLoading.style.display = 'inline-block';
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin me-2"></i>Sending...';
   
   // Send JSON data to API
   fetch('https://fullstacktanay-production.up.railway.app/api/contacts', {
@@ -152,9 +147,10 @@ function showLoaderAndSubmit() {
     body: JSON.stringify({ name, email, message })
   })
   .then(response => response.json())
-  .then(data => {
+    .then(data => {
     // Reset button state
-  
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
     
     if (data.status === 'success') {
       alert('✅ Message sent successfully!');
@@ -167,9 +163,10 @@ function showLoaderAndSubmit() {
       alert('❌ Error: ' + (data.error || 'Failed to send message'));
     }
   })
-  .catch(error => {
+    .catch(error => {
     // Reset button state
-  
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
     
     alert('❌ Network error. Please try again.');
   });
