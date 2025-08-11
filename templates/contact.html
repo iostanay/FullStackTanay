@@ -149,8 +149,12 @@ function showLoaderAndSubmit() {
   .then(data => {
     document.getElementById('pageLoader').style.display = 'none';
     if (data.status === 'success') {
-      alert('✅ Message sent successfully!');
+      alert('✅ Message sent successfully! Redirecting to home page...');
       document.getElementById('contactForm').reset();
+      // Redirect to home page after 2 seconds
+      setTimeout(function() {
+        window.location.href = '/';
+      }, 2000);
     } else {
       alert('❌ Error: ' + (data.error || 'Failed to send message'));
     }
