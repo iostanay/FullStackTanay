@@ -133,7 +133,7 @@ function showLoaderAndSubmit() {
   // Basic validation
   if (!name || !email || !message) {
     alert('Please fill in all fields');
-    document.getElementById('pageLoader').style.display = 'none';
+   // document.getElementById('pageLoader').style.display = 'none';
     return false;
   }
   
@@ -149,7 +149,7 @@ function showLoaderAndSubmit() {
   .then(data => {
     document.getElementById('pageLoader').style.display = 'none';
     if (data.status === 'success') {
-      alert('✅ Message sent successfully! Redirecting to home page...');
+      alert('✅ Message sent successfully!');
       document.getElementById('contactForm').reset();
       // Redirect to home page after 2 seconds
       setTimeout(function() {
