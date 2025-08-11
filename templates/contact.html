@@ -123,7 +123,7 @@
 <script>
 function showLoaderAndSubmit() {
   // Show loader
-  document.getElementById('pageLoader').style.display = 'flex';
+  //document.getElementById('pageLoader').style.display = 'flex';
   
   // Get form data
   const name = document.getElementById('name').value.trim();
@@ -133,7 +133,7 @@ function showLoaderAndSubmit() {
   // Basic validation
   if (!name || !email || !message) {
     alert('Please fill in all fields');
-   // document.getElementById('pageLoader').style.display = 'none';
+    document.getElementById('pageLoader').style.display = 'none';
     return false;
   }
   
