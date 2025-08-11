@@ -79,7 +79,7 @@
             </div>
           {% endif %}
           
-          <form id="contactForm">
+          <form id="contactForm" method="POST" action="https://fullstacktanay-production.up.railway.app/api/contacts">
             <div class="mb-3">
               <label for="name" class="form-label">Your Name</label>
               <input type="text" class="form-control {{ 'is-invalid' if errors and errors.name else 'is-valid' if name else '' }}" 
@@ -110,7 +110,7 @@
               {% endif %}
             </div>
             
-            <button type="submit" class="btn btn-primary btn-lg px-4">
+            <button type="submit" class="btn btn-primary btn-lg px-4" onclick="showLoaderAndSubmit()">
               <i class="fas fa-paper-plane me-2"></i>Send Message
             </button>
           </form>
@@ -121,90 +121,47 @@
 </div>
 
 <script>
-// Simple contact form handler
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Contact form script loaded');
+function showLoaderAndSubmit() {
+  // Show loader
+  document.getElementById('pageLoader').style.display = 'flex';
   
-  const form = document.getElementById('contactForm');
-  const loader = document.getElementById('pageLoader');
+  // Get form data
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
   
-  if (!form) {
-    console.error('Contact form not found');
-    return;
+  // Basic validation
+  if (!name || !email || !message) {
+    alert('Please fill in all fields');
+    document.getElementById('pageLoader').style.display = 'none';
+    return false;
   }
   
-  if (!loader) {
-    console.error('Page loader not found');
-    return;
-  }
-  
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    console.log('Form submitted');
-    
-    // Get form values
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-    
-    console.log('Form data:', { name, email, message });
-    
-    // Basic validation
-    if (!name || !email || !message) {
-      alert('Please fill in all fields');
-      return;
+  // Send JSON data to API
+  fetch('https://fullstacktanay-production.up.railway.app/api/contacts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, email, message })
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('pageLoader').style.display = 'none';
+    if (data.status === 'success') {
+      alert('✅ Message sent successfully!');
+      document.getElementById('contactForm').reset();
+    } else {
+      alert('❌ Error: ' + (data.error || 'Failed to send message'));
     }
-    
-    if (name.length < 2) {
-      alert('Name must be at least 2 characters');
-      return;
-    }
-    
-    if (message.length < 10) {
-      alert('Message must be at least 10 characters');
-      return;
-    }
-    
-    // Show loader
-    console.log('Showing loader');
-    loader.style.display = 'flex';
-    
-    // Send API request
-    fetch('https://fullstacktanay-production.up.railway.app/api/contacts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, email, message })
-    })
-    .then(response => {
-      console.log('Response status:', response.status);
-      return response.json();
-    })
-    .then(data => {
-      console.log('Response data:', data);
-      
-      // Hide loader
-      loader.style.display = 'none';
-      
-      if (data.status === 'success') {
-        alert('✅ Message sent successfully!');
-        form.reset();
-      } else {
-        alert('❌ Error: ' + (data.error || 'Failed to send message'));
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      
-      // Hide loader
-      loader.style.display = 'none';
-      
-      alert('❌ Network error. Please try again.');
-    });
+  })
+  .catch(error => {
+    document.getElementById('pageLoader').style.display = 'none';
+    alert('❌ Network error. Please try again.');
   });
   
-  console.log('Contact form event listener added');
-});
+  return false; // Prevent form submission
+}
 </script>
+
 {% endblock %}
