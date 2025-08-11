@@ -93,7 +93,7 @@
       try {
         console.log('Sending contact form data:', { name, email, message });
         
-        const res = await fetch("/api/contacts", {
+        const res = await fetch("https://fullstacktanay-production.up.railway.app/api/contacts", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, message })
